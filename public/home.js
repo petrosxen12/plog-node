@@ -5,12 +5,19 @@ let __id = 0;
 function getId() {
   return `article${__id++}`;
 }
-
+function gotoStory(id) {
+  window.open(`/details/${id}`)
+}
+function logout() {
+  if (confirm("Do you wish to logout?")) {
+    window.location.replace("/logout")
+  }
+}
 function iconTemplate(plog) {
   let id = getId() 
   let photo = plog.photos[Math.floor(plog.photos.length*Math.random())]
   return `<article class="thumb">
-  <a href="#" class="image" id=>
+  <a href="" onclick="event.preventDefault(); gotoStory(${plog.id})" class="image">
     <img src="${photo.url}" alt="" style="max-height:400px"/> </a>
   <h2>
     <a href="#"><strong>${plog.title}</strong> </a>
